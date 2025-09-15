@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infografía Interactiva: Inecuaciones</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    img { border-radius: 12px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-slate-100 text-slate-800">
+
+  <!-- Contenedor -->
+  <div class="max-w-5xl mx-auto py-12 px-6">
+    
+    <!-- Título -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-indigo-700">📊 Infografía Interactiva</h1>
+      <p class="mt-4 text-lg text-slate-600">Aplicación práctica de las <span class="bg-indigo-100 text-indigo-700 px-2 rounded">inecuaciones</span></p>
+    </div>
+
+    <!-- Sección 1 -->
+    <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <div>
+        <h2 class="text-2xl font-bold text-indigo-600 mb-4">1️⃣ Problema real</h2>
+        <p class="leading-relaxed">
+          Una empresa organiza un concierto 🎶.  
+          Cada boleto cuesta <strong>$150.000 COP</strong>  
+          y el costo total del evento es de <strong>$30.000.000 COP</strong>.  
+          ¿Cuántos boletos deben venderse para no tener pérdidas?
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://st3.depositphotos.com/9999814/18013/i/450/depositphotos_180132072-stock-photo-happy-people-dance-in-nightclub.jpg" alt="Concierto" class="w-80">
+      </div>
+    </div>
+
+    <!-- Sección 2 -->
+    <div class="grid md:grid-cols-2 gap-8 items-center bg-indigo-50 rounded-xl shadow-md p-6 border border-indigo-200 mt-10">
+      <div class="flex justify-center">
+        <img src="https://www.shutterstock.com/shutterstock/photos/2033803736/display_1500/stock-vector-back-to-school-background-with-round-hole-paper-cut-cartoon-little-boy-math-student-learning-2033803736.jpg" alt="Matemáticas Ilustradas" class="w-72">
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold text-indigo-600 mb-4">2️⃣ Modelo con inecuación</h2>
+        <p class="leading-relaxed">
+          Sea <strong>x</strong> = número de boletos vendidos.  
+          El ingreso es <strong>150.000x</strong> COP.  
+          Para cubrir los costos:
+        </p>
+        <p class="mt-3 text-lg font-mono bg-white rounded px-3 py-2 inline-block border border-slate-300">
+          150.000x ≥ 30.000.000
+        </p>
+      </div>
+    </div>
+
+    <!-- Sección 3 Interactiva -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200 mt-10">
+      <h2 class="text-2xl font-bold text-indigo-600 mb-4">3️⃣ ¡Ponlo a prueba!</h2>
+      <p class="leading-relaxed">Ingresa un número de boletos vendidos y verifica si se cubren los gastos:</p>
+      
+      <div class="mt-4 flex gap-4">
+        <input id="boletosInput" type="number" placeholder="Ej: 150" class="px-4 py-2 border rounded-lg w-40 focus:ring-2 focus:ring-indigo-500">
+        <button onclick="verificarBoletos()" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700">Verificar</button>
+      </div>
+      
+      <div id="resultado" class="mt-6 text-lg font-semibold"></div>
+    </div>
+
+    <!-- Sección 4 Resolución -->
+    <div class="grid md:grid-cols-2 gap-8 items-center bg-white rounded-xl shadow-lg p-6 border border-slate-200 mt-10">
+      <div>
+        <h2 class="text-2xl font-bold text-indigo-600 mb-4">4️⃣ Resolución matemática</h2>
+        <p class="leading-relaxed">Resolviendo la inecuación:</p>
+        <p class="mt-3 text-lg font-mono bg-slate-50 rounded px-3 py-2 inline-block border border-slate-300">
+          150.000x ≥ 30.000.000 → x ≥ 200
+        </p>
+        <p class="mt-4 leading-relaxed">
+          La empresa debe vender <strong>al menos 200 boletos</strong> para no tener pérdidas.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://img.freepik.com/foto-gratis/tabla-negra-formulas-calculos-cientificos-inscritos_1150-19413.jpg" alt="Fórmulas Matemáticas" class="w-80">
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div class="mt-12 text-center bg-indigo-600 text-white rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold mb-3">✨ Conclusión</h2>
+      <p class="text-lg">
+        Las <strong>inecuaciones</strong> no solo se resuelven en papel:  
+        son <span class="underline">herramientas prácticas</span> para tomar decisiones en la vida real.
+      </p>
+    </div>
+  </div>
+
+  <!-- Script interacción -->
+  <script>
+    function verificarBoletos() {
+      const precio = 150000;
+      const costo = 30000000;
+      const boletos = document.getElementById("boletosInput").value;
+      const ingreso = boletos * precio;
+      const resultado = document.getElementById("resultado");
+
+      if (!boletos || boletos <= 0) {
+        resultado.innerHTML = "❌ Ingresa un número válido de boletos.";
+        resultado.className = "mt-6 text-lg font-semibold text-red-600";
+        return;
+      }
+
+      if (ingreso >= costo) {
+        resultado.innerHTML = `✅ Con ${boletos} boletos se cubren los gastos. ¡Buen trabajo! 🎉`;
+        resultado.className = "mt-6 text-lg font-semibold text-green-600";
+      } else {
+        const faltan = Math.ceil((costo - ingreso) / precio);
+        resultado.innerHTML = `⚠️ Con ${boletos} boletos NO alcanza. Te faltan vender ${faltan} más.`;
+        resultado.className = "mt-6 text-lg font-semibold text-yellow-600";
+      }
+    }
+  </script>
+</body>
+</html>
